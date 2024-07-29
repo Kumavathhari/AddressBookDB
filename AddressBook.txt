@@ -1,0 +1,20 @@
+UC1_CreateDatabase
+
+mysql> CREATE DATABASE address_book;
+Query OK, 1 row affected (0.16 sec)
+
+mysql> USE address_book;
+Database changed
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| address_book       |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.03 sec)
+
+mysql>
