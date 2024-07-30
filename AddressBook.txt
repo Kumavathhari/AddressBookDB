@@ -1,17 +1,4 @@
-UC5_DeletePersonsContact
-
-mysql> select * from Addressbook;
-+----+------------+-----------+---------------+-----------+------------+--------+--------------+-------------------------+
-| id | first_name | last_name | address       | city      | state      | zip    | phone_number | email                   |
-+----+------------+-----------+---------------+-----------+------------+--------+--------------+-------------------------+
-|  1 | Hari       | Naik      | 111, Circle A | Mumbai    | Maharastra | 400047 | 9618101467   | harinaik@gmail.com      |
-|  2 | Raj        | Patel     | 222, Circle B | Delhi     | Delhi      | 110001 | 9876543210   | raj.patel@example.com   |
-|  3 | Anita      | Reddy     | 333, Circle C | Bangalore | Karnataka  | 560001 | 8765432109   | anita.reddy@example.com |
-+----+------------+-----------+---------------+-----------+------------+--------+--------------+-------------------------+
-3 rows in set (0.00 sec)
-
-mysql> DELETE FROM AddressBook WHERE first_name = 'Anita' AND last_name = 'Reddy';
-Query OK, 1 row affected (0.01 sec)
+UC6_RetrievePersonsByContact
 
 mysql> SELECT * FROM AddressBook;
 +----+------------+-----------+---------------+--------+------------+--------+--------------+-----------------------+
@@ -21,5 +8,21 @@ mysql> SELECT * FROM AddressBook;
 |  2 | Raj        | Patel     | 222, Circle B | Delhi  | Delhi      | 110001 | 9876543210   | raj.patel@example.com |
 +----+------------+-----------+---------------+--------+------------+--------+--------------+-----------------------+
 2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM AddressBook WHERE City = 'Delhi';
++----+------------+-----------+---------------+-------+-------+--------+--------------+-----------------------+
+| id | first_name | last_name | address       | city  | state | zip    | phone_number | email                 |
++----+------------+-----------+---------------+-------+-------+--------+--------------+-----------------------+
+|  2 | Raj        | Patel     | 222, Circle B | Delhi | Delhi | 110001 | 9876543210   | raj.patel@example.com |
++----+------------+-----------+---------------+-------+-------+--------+--------------+-----------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM AddressBook WHERE City = 'Mumbai' OR state = 'Maharastra';
++----+------------+-----------+---------------+--------+------------+--------+--------------+--------------------+
+| id | first_name | last_name | address       | city   | state      | zip    | phone_number | email              |
++----+------------+-----------+---------------+--------+------------+--------+--------------+--------------------+
+|  1 | Hari       | Naik      | 111, Circle A | Mumbai | Maharastra | 400047 | 9618101467   | harinaik@gmail.com |
++----+------------+-----------+---------------+--------+------------+--------+--------------+--------------------+
+1 row in set (0.00 sec)
 
 mysql>
