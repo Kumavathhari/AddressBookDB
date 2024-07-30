@@ -24,8 +24,6 @@ mysql> SELECT city, COUNT(*) AS total_records FROM AddressBook GROUP BY City;
 +------------+---------------+
 5 rows in set (0.02 sec)
 
-mysql> SELECT city, COUNT(*) AS total_records FROM AddressBook GROUP BY state;
-ERROR 1055 (42000): Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'address_book.AddressBook.city' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
 mysql> SELECT state, COUNT(*) AS total_records FROM AddressBook GROUP BY state;
 +------------+---------------+
 | state      | total_records |
