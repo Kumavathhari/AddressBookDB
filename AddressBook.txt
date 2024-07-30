@@ -1,4 +1,4 @@
-UC10_CountByType
+UC11_AddPersonToFriendAndFamily
 
 mysql> select * from Addressbook;
 +----+------------+-----------+---------------+------------+------------+--------+--------------+---------------------------+---------------+------------+
@@ -10,14 +10,35 @@ mysql> select * from Addressbook;
 |  5 | Sneha      | Patil     | 444, Lane D   | Mumbai     | Maharastra | 440001 | 9234567890   | sneha.patil@example.com   | Sneha Patil   | Family     |
 |  6 | Vikram     | Rao       | 555, Lane E   | Aurangabad | Maharastra | 431001 | 9345678901   | vikram.rao@example.com    | Vikram Rao    | Friends    |
 +----+------------+-----------+---------------+------------+------------+--------+--------------+---------------------------+---------------+------------+
-5 rows in set (0.00 sec)
+5 rows in set (0.01 sec)
 
-mysql> SELECT type, COUNT(*) AS count FROM AddressBook GROUP BY type;
-+------------+-------+
-| type       | count |
-+------------+-------+
-| Family     |     2 |
-| Friends    |     2 |
-| Profession |     1 |
-+------------+-------+
-3 rows in set (0.01 sec)
+mysql> INSERT INTO Addressbook (first_name, last_name, address, city, state, zip, phone_number, email, name, type)
+    -> VALUES
+    -> ('John', 'Doe', '123, New Street', 'Mumbai', 'Maharastra', '400048', '9123456780', 'john.doe@example.com', 'John Doe', 'Friends'),
+    -> ('John', 'Doe', '123, New Street', 'Mumbai', 'Maharastra', '400048', '9123456780', 'john.doe@example.com', 'John Doe', 'Family');
+Query OK, 2 rows affected (0.06 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from Addressbook;
++----+------------+-----------+-----------------+------------+------------+--------+--------------+---------------------------+---------------+------------+
+| id | first_name | last_name | address         | city       | state      | zip    | phone_number | email                     | name          | type       |
++----+------------+-----------+-----------------+------------+------------+--------+--------------+---------------------------+---------------+------------+
+|  1 | Hari       | Naik      | 111, Circle A   | Mumbai     | Maharastra | 400047 | 9618101467   | harinaik@gmail.com        | Hari Naik     | Family     |
+|  2 | Raj        | Patel     | 222, Circle B   | Mumbai     | Delhi      | 110001 | 9876543210   | raj.patel@example.com     | Raj Patel     | Friends    |
+|  4 | Amit       | Deshmukh  | 333, Lane C     | Mumbai     | Maharastra | 411001 | 9123456789   | amit.deshmukh@example.com | Amit Deshmukh | Profession |
+|  5 | Sneha      | Patil     | 444, Lane D     | Mumbai     | Maharastra | 440001 | 9234567890   | sneha.patil@example.com   | Sneha Patil   | Family     |
+|  6 | Vikram     | Rao       | 555, Lane E     | Aurangabad | Maharastra | 431001 | 9345678901   | vikram.rao@example.com    | Vikram Rao    | Friends    |
+|  7 | John       | Doe       | 123, New Street | Mumbai     | Maharastra | 400048 | 9123456780   | john.doe@example.com      | John Doe      | Friends    |
+|  8 | John       | Doe       | 123, New Street | Mumbai     | Maharastra | 400048 | 9123456780   | john.doe@example.com      | John Doe      | Family     |
++----+------------+-----------+-----------------+------------+------------+--------+--------------+---------------------------+---------------+------------+
+7 rows in set (0.01 sec)
+
+mysql> SELECT * FROM Addressbook
+    -> WHERE name = 'John Doe';
++----+------------+-----------+-----------------+--------+------------+--------+--------------+----------------------+----------+---------+
+| id | first_name | last_name | address         | city   | state      | zip    | phone_number | email                | name     | type    |
++----+------------+-----------+-----------------+--------+------------+--------+--------------+----------------------+----------+---------+
+|  7 | John       | Doe       | 123, New Street | Mumbai | Maharastra | 400048 | 9123456780   | john.doe@example.com | John Doe | Friends |
+|  8 | John       | Doe       | 123, New Street | Mumbai | Maharastra | 400048 | 9123456780   | john.doe@example.com | John Doe | Family  |
++----+------------+-----------+-----------------+--------+------------+--------+--------------+----------------------+----------+---------+
+2 rows in set (0.02 sec)
