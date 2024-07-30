@@ -1,14 +1,40 @@
+UC4_EditContact
 
+mysql> INSERT INTO Addressbook (first_name, last_name, address, city, state, zip, phone_number, email)
+    -> VALUES
+    ->     ('Raj', 'Patel', '234, Ashoka Road', 'Delhi', 'Delhi', '110001', '9876543210', 'raj.patel@example.com'),
+    ->     ('Anita', 'Reddy', '456, Shankar Market', 'Bangalore', 'Karnataka', '560001', '8765432109', 'anita.reddy@example.com');
+Query OK, 2 rows affected (0.05 sec)
+Records: 2  Duplicates: 0  Warnings: 0
 
-UC3_InsertContact
+mysql> select * from Addressbook;
++----+------------+-----------+---------------------+-----------+------------+--------+--------------+-------------------------+
+| id | first_name | last_name | address             | city      | state      | zip    | phone_number | email                   |
++----+------------+-----------+---------------------+-----------+------------+--------+--------------+-------------------------+
+|  1 | Hari       | Naik      | Ghatkopar           | Mumbai    | Maharastra | 400047 | 9618101467   | harinaik@gmail.com      |
+|  2 | Raj        | Patel     | 234, Ashoka Road    | Delhi     | Delhi      | 110001 | 9876543210   | raj.patel@example.com   |
+|  3 | Anita      | Reddy     | 456, Shankar Market | Bangalore | Karnataka  | 560001 | 8765432109   | anita.reddy@example.com |
++----+------------+-----------+---------------------+-----------+------------+--------+--------------+-------------------------+
+3 rows in set (0.00 sec)
 
-mysql> INSERT INTO AddressBook (first_name, last_name, address, city, state, zip, phone_number, email) VALUES ('Hari', 'Naik', 'Ghatkopar', 'Mumbai', 'Maharastra', '400047', '9618101467', 'harinaik@gmail.com');
-Query OK, 1 row affected (0.13 sec)
+mysql> UPDATE AddressBook SET address = '111, Circle A' WHERE first_name = 'Hari' AND last_name = 'Naik';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
 
-mysql> SELECT * FROM AddressBook;
-+----+------------+-----------+-----------+--------+------------+--------+--------------+--------------------+
-| id | first_name | last_name | address   | city   | state      | zip    | phone_number | email              |
-+----+------------+-----------+-----------+--------+------------+--------+--------------+--------------------+
-|  1 | Hari       | Naik      | Ghatkopar | Mumbai | Maharastra | 400047 | 9618101467   | harinaik@gmail.com |
-+----+------------+-----------+-----------+--------+------------+--------+--------------+--------------------+
-1 row in set (0.01 sec)
+mysql> UPDATE AddressBook SET address = '222, Circle B' WHERE first_name = 'Raj' AND last_name = 'Patel';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE AddressBook SET address = '333, Circle C' WHERE first_name = 'Anita' AND last_name = 'Reddy';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from Addressbook;
++----+------------+-----------+---------------+-----------+------------+--------+--------------+-------------------------+
+| id | first_name | last_name | address       | city      | state      | zip    | phone_number | email                   |
++----+------------+-----------+---------------+-----------+------------+--------+--------------+-------------------------+
+|  1 | Hari       | Naik      | 111, Circle A | Mumbai    | Maharastra | 400047 | 9618101467   | harinaik@gmail.com      |
+|  2 | Raj        | Patel     | 222, Circle B | Delhi     | Delhi      | 110001 | 9876543210   | raj.patel@example.com   |
+|  3 | Anita      | Reddy     | 333, Circle C | Bangalore | Karnataka  | 560001 | 8765432109   | anita.reddy@example.com |
++----+------------+-----------+---------------+-----------+------------+--------+--------------+-------------------------+
+3 rows in set (0.00 sec)
